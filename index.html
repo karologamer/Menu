@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-image: url('https://i.ibb.co/2Fh85Yq/1727275510636.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .header img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-container {
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+        
+        .menu-button {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 12px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            overflow: hidden;
+            animation: slideIn 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .menu-button:nth-child(1) { animation-delay: 0.2s; }
+        .menu-button:nth-child(2) { animation-delay: 0.4s; }
+        .menu-button:nth-child(3) { animation-delay: 0.6s; }
+        .menu-button:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-button img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .menu-button:hover img {
+            transform: scale(1.1);
+        }
+        
+        .menu-button span {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .menu-button:hover span {
+            transform: translateX(5px);
+        }
+        
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out forwards 1s;
+            opacity: 0;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .social-button {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        
+        .social-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-button img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 1;
+            padding: 8px 0;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+        
+        .dropdown-button {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.2s;
+        }
+        
+        .dropdown-button:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.ibb.co/XZmcVFNn/IMG-20240925-132533.jpg" alt="Logo CCOO">
+    </div>
+    
+    <div class="menu-container">
+        <a href="https://transporte-sanitario-convenio-2024.netlify.app/" class="menu-button">
+            <img src="https://i.postimg.cc/P5R8dwHK/IMG-20250220-WA0045-1.jpg" alt="Convenio">
+            <span>CONVENIO 2020-2024</span>
+        </a>
+        
+        <a href="https://nomina2024-2025.netlify.app/" class="menu-button">
+            <img src="https://i.postimg.cc/YSFNV3FQ/IMG-20250301-WA0035.jpg" alt="Nómina">
+            <span>NOMINA 2024-2025</span>
+        </a>
+        
+        <a href="https://primaunica.netlify.app/" class="menu-button">
+            <img src="https://i.postimg.cc/zGgRXffr/IMG-20241008-WA0021.jpg" alt="Prima Única">
+            <span>PRIMA UNICA 2022-2024</span>
+        </a>
+        
+        <a href="https://finiquito2024.netlify.app/" class="menu-button">
+            <img src="https://i.postimg.cc/jjh2Ln0G/IMG-20241117-WA0001.jpg" alt="Finiquito">
+            <span>FINIQUITO 2024</span>
+        </a>
+    </div>
+    
+    <div class="social-container">
+        <div class="dropdown">
+            <a href="#" class="social-button">
+                <img src="https://i.postimg.cc/9M7WyDvm/16566143.png" alt="WhatsApp">
+            </a>
+            <div class="dropdown-content">
+                <a href="https://chat.whatsapp.com/D5ApXE9M1rG7RN9Z3NA8Xu" class="dropdown-button">SAS SANTA SOFIA</a>
+                <a href="https://whatsapp.com/channel/0029VawlpviEawdySfyY6p31" class="dropdown-button">TENORIO E HIJOS</a>
+                <a href="https://chat.whatsapp.com/JmYhPARfcLR740U3sRQ04u" class="dropdown-button">UTE SANIR</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <a href="#" class="social-button">
+                <img src="https://i.postimg.cc/Bnz9Nq5X/2504941.png" alt="Telegram">
+            </a>
+            <div class="dropdown-content">
+                <a href="https://t.me/+opJ3RrL5QB4xNDU0" class="dropdown-button">SAS SANTA SOFIA</a>
+                <a href="https://t.me/+ZfUWc84R_ww5NTk0" class="dropdown-button">TENORIO E HIJOS</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <a href="#" class="social-button">
+                <img src="https://i.postimg.cc/prC3jxXV/2111463.png" alt="Instagram"><!--  -->
+            </a>
+            <div class="dropdown-content">
+                <a href="https://www.instagram.com/ccooambulanciasmadrid/" class="dropdown-button">GENERALES</a>
+                <a href="https://www.instagram.com/ccoo_madrid_urgencias?igsh=bGIyY2pnbWJhdnYy" class="dropdown-button">URGENCIAS</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
