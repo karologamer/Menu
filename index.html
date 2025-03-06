@@ -204,22 +204,22 @@
     </div>
     
     <div class="menu-container">
-        <a href="https://transporte-sanitario-convenio-2024.netlify.app/" class="menu-button">
+        <a href="https://transporte-sanitario-convenio-2024.netlify.app/" class="menu-button" target="_blank" onclick="reloadPage(event, 'https://transporte-sanitario-convenio-2024.netlify.app/')">
             <img src="https://i.postimg.cc/P5R8dwHK/IMG-20250220-WA0045-1.jpg" alt="Convenio">
             <span>CONVENIO 2020-2024</span>
         </a>
         
-        <a href="https://nomina2024-2025.netlify.app/" class="menu-button">
+        <a href="https://nomina2024-2025.netlify.app/" class="menu-button" target="_blank" onclick="reloadPage(event, 'https://nomina2024-2025.netlify.app/')">
             <img src="https://i.postimg.cc/YSFNV3FQ/IMG-20250301-WA0035.jpg" alt="Nómina">
             <span>NOMINA 2024-2025</span>
         </a>
         
-        <a href="https://primaunica.netlify.app/" class="menu-button">
+        <a href="https://primaunica.netlify.app/" class="menu-button" target="_blank" onclick="reloadPage(event, 'https://primaunica.netlify.app/')">
             <img src="https://i.postimg.cc/zGgRXffr/IMG-20241008-WA0021.jpg" alt="Prima Única">
             <span>PRIMA UNICA 2022-2024</span>
         </a>
         
-        <a href="https://finiquito2024.netlify.app/" class="menu-button">
+        <a href="https://finiquito2024.netlify.app/" class="menu-button" target="_blank" onclick="reloadPage(event, 'https://finiquito2024.netlify.app/')">
             <img src="https://i.postimg.cc/jjh2Ln0G/IMG-20241117-WA0001.jpg" alt="Finiquito">
             <span>FINIQUITO 2024</span>
         </a>
@@ -257,5 +257,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Función para recargar la página actual al cargar
+        window.onload = function() {
+            // Verificar si es la primera carga o una recarga
+            if (!sessionStorage.getItem('pageLoaded')) {
+                sessionStorage.setItem('pageLoaded', 'true');
+                // Esperar un momento para que se vean las animaciones y luego recargar
+                setTimeout(function() {
+                    location.reload(true); // true para forzar recarga desde el servidor
+                }, 100);
+            } else {
+                // Limpiar la bandera para la próxima visita
+                sessionStorage.removeItem('pageLoaded');
+            }
+        };
+
+        // Función para abrir enlaces en una nueva pestaña con recarga forzada
+        function reloadPage(event, url) {
+            event.preventDefault();
+            // Abrir en nueva pestaña
+            var newWindow = window.open(url, '_blank');
+            
+            // Si la ventana se abrió correctamente, intentar recargar
+            if (newWindow) {
+                // Intentar ejecutar script en la nueva ventana para forzar recarga
+                try {
+                    newWindow.addEventListener('load', function() {
+                        newWindow.location.reload(true);
+                    });
+                } catch (e) {
+                    // Si hay error de seguridad por políticas de mismo origen, no podemos hacer nada
+                    console.log("No se puede forzar recarga en dominio externo debido a restricciones de seguridad");
+                }
+            }
+        }
+    </script>
 </body>
 </html>
+
